@@ -10,7 +10,7 @@ from models import db
 from models import User
 from flask import session #세션
 from flask_wtf.csrf import CSRFProtect #csrf
-from form import RegisterForm, LoginForm, DetailForm
+from form import RegisterForm, LoginForm, DetailForm, EditForm, FlaskForm
 from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 
@@ -32,7 +32,7 @@ def mainpage():
         else:
             star = "star"+str(math.floor(point/20))
             stamp = "stamp"+str(point-20*math.floor(point/20))
-    return render_template('podo.html', name=user.name, star=star, stamp=stamp)
+    return render_template('podo.html', name=user.name, userid=userid, star=star, stamp=stamp)
 
 
 @app.route('/admin', methods=['GET', 'POST'])
@@ -62,6 +62,36 @@ def detail(userid):
         return redirect('/admin')
     return render_template('user_detail.html', user=user, form=form)
     
+@app.route('/edit/<userid>', methods=['GET','POST'])
+def edit(userid):
+    form = EditForm()
+    user = User.query.filter_by(userid=userid).first()
+    if request.method == 'POST':
+        user.phone = form.data.get('phone')
+        user.name = form.data.get('name')
+        db.session.commit()
+        return redirect('/')
+    return render_template('user_edit.html', user=user, userid=userid, form=form)
+
+
+@app.route('/delete/<userid>', methods=['GET','POST'])
+def delete(userid):
+    form = FlaskForm()
+    if session.get('userid') == "admin":
+        user = User.query.filter_by(userid=userid).first()
+        if request.method == 'POST':
+            db.session.delete(user)
+            db.session.commit()
+            return redirect('/admin')
+    elif userid != session.get('userid'):
+        return redirect('/')
+    user = User.query.filter_by(userid=userid).first()
+    if request.method == 'POST':
+        db.session.delete(user)
+        db.session.commit()
+        return redirect('/logout')
+    return render_template('warning.html', userid=userid, form=form)
+
 
 @app.route('/register', methods=['GET', 'POST']) #GET(정보보기), POST(정보수정) 메서드 허용
 def register():
@@ -74,11 +104,12 @@ def register():
             user.name = form.data.get('name')
             user.phone = form.data.get('phone')
             user.password = generate_password_hash(form.data.get('password'))
+            user.point = 0
+        else:
+            flash('이미 존재하는 id 입니다')
         db.session.add(user) #DB저장
         db.session.commit() #변동사항 반영
         return redirect('/login')
-    else:
-        flash('이미 존재하는 id 입니다')
     return render_template('register.html', form=form) #form이 어떤 form인지 명시한다
 
 
