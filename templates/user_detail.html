@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+        <meta charset='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
+        <title>KSUBF 포도스탬프 관리자</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+   </head> 
+   <body>
+       <div id="header">
+                <h1 style=text-align:center>포도 스템프 관리자 페이지</h1>
+                <div class="login_info">
+                    {%if userid%}
+                    {{userid}}
+                    {%endif%}
+                    <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
+                </div>
+           </div>
+       </div>
+       <div id="body">
+        <div class="container my-3">
+            <div class="row mt-5">
+                <div class="col-12">
+                <form method="POST" >
+                    {{form.csrf_token}}
+                    <div class="form-group">
+                        {{form.userid.label("아이디")}}
+                        {{form.userid(class="form-control", value=user.userid)}}
+                    </div>
+                    <div class="form-group">
+                        {{form.name.label("이름")}}
+                        {{form.name(class="form-control", value=user.name)}}
+                    </div>
+                    <div class="form-group">
+                        {{form.phone.label("전화번호")}}
+                        {{form.phone(class="form-control", value=user.phone)}}
+                    </div>
+                    <div class="form-group">
+                        {{form.point.label("포인트")}}
+                        {{form.point(class="form-control", value=user.point)}}
+                    </div>
+                    <button type="submit" class="btn btn-primary">저장</button>
+                    <button type="button" class="btn btn-secondary" onclick="location.href='/admin'">취소</button>
+                </form>
+            </div>
+        </div>
+        <!-- <script type='text/javascript'>
+        const page_elements = document.getElementsByClassName("page-link");
+        Array.from(page_elements).forEach(function(element) {
+            element.addEventListener('click', function() {
+                document.getElementById('page').value = this.dataset.page;
+                document.getElementById('searchForm').submit();
+            });
+        });
+        const btn_search = document.getElementById("btn_search");
+        btn_search.addEventListener('click', function() {
+            document.getElementById('kw').value = document.getElementById('search_kw').value;
+            document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+            document.getElementById('searchForm').submit();
+        });
+        </script> -->
+       </div>
+   </body>
+</html>

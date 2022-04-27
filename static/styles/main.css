@@ -1,0 +1,112 @@
+.login_info{
+    padding-top: 2%;
+    padding-bottom: 1%;
+    padding-right: 1%;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: right;
+    align-items: right;
+}
+
+.podo{
+    padding-bottom: 10%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    margin-left: 1%;
+    margin-right: 1%;
+    max-width: 100%;
+    height: auto;
+}
+
+body{
+    height: 100vh;
+    background-image: radial-gradient( circle 400px at 6.8% 8.3%,  rgba(255,244,169,1) 0%, rgba(255,244,234,1) 100.2% );
+    background-size: cover;
+}
+
+.stamp0{
+    content:url("/static/images/stamp0-01.png")
+}
+.stamp1{
+    content:url("/static/images/stamp1-01.png")
+}
+.stamp2{
+    content:url("/static/images/stamp2-01.png")
+}
+.stamp3{
+    content:url("/static/images/stamp3-01.png")
+}
+.stamp4{
+    content:url("/static/images/stamp4-01.png")
+}
+.stamp5{
+    content:url("/static/images/stamp5-01.png")
+}
+.stamp6{
+    content:url("/static/images/stamp6-01.png")
+}
+.stamp7{
+    content:url("/static/images/stamp7-01.png")
+}
+.stamp8{
+    content:url("/static/images/stamp8-01.png")
+}
+.stamp9{
+    content:url("/static/images/stamp9-01.png")
+}
+.stamp10{
+    content:url("/static/images/stamp10-01.png")
+}
+.stamp11{
+    content:url("/static/images/stamp11-01.png")
+}
+.stamp12{
+    content:url("/static/images/stamp12-01.png")
+}
+.stamp13{
+    content:url("/static/images/stamp13-01.png")
+}
+.stamp14{
+    content:url("/static/images/stamp14-01.png")
+}
+.stamp15{
+    content:url("/static/images/stamp15-01.png")
+}
+.stamp16{
+    content:url("/static/images/stamp16-01.png")
+}
+.stamp17{
+    content:url("/static/images/stamp17-01.png")
+}
+.stamp18{
+    content:url("/static/images/stamp18-01.png")
+}
+.stamp19{
+    content:url("/static/images/stamp19-01.png")
+}
+.stamp20{
+    content:url("/static/images/stamp20-01.png")
+}
+.star0{
+    content:url("/static/images/0star-01.png")
+}
+.star1{
+    content:url("/static/images/1star-01.png")
+}
+.star2{
+    content:url("/static/images/2star-01.png")
+}
+.star3{
+    content:url("/static/images/3star-01.png")
+}
+.star4{
+    content:url("/static/images/4star-01.png")
+}
+.star5{
+    content:url("/static/images/5star-01.png")
+}
