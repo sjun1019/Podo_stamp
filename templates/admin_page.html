@@ -22,7 +22,7 @@
                 <h1 style=text-align:center;padding-top:2%>포인트 관리 시스템</h1>
                 <div class="login_info">
                     {%if userid%}
-                    {{userid}}
+                    <a href="{{ url_for('edit', userid=userid) }}">{{userid}}</a>
                     {%endif%}
                     <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
                 </div>
