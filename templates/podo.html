@@ -21,9 +21,10 @@
    </head> 
    <body style="overflow-x: hidden;overflow-y: hidden;">
        <div id="header">
-           <div class="login_info">
+           <div class="login_info" style="font-size: 17pt">
                 {%if name%}
-                {{name}}<a> 님  환영합니다  </a>
+                <a href="{{ url_for('edit', userid=userid) }}">{{name}}</a>
+                <a> 님  환영합니다  </a>
                 {%endif%}
                 <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
            </div>
