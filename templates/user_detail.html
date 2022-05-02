@@ -5,7 +5,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
-        <title>KSUBF 포도스탬프 관리자</title>
+        <title>경성 포인트 적립 시스템</title>
         <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
@@ -15,7 +15,7 @@
    </head> 
    <body>
        <div id="header">
-                <h1 style=text-align:center>포도 스탬프 관리자 페이지</h1>
+                <h1 style=text-align:center>포인트 적립</h1>
                 <div class="login_info">
                     {%if userid%}
                     {{userid}}
@@ -43,8 +43,20 @@
                         {{form.phone(class="form-control", value=user.phone)}}
                     </div>
                     <div class="form-group">
-                        {{form.point.label("포인트")}}
+                        {{form.point.label("현재 포인트")}}
                         {{form.point(class="form-control", value=user.point)}}
+                    </div>
+                    <div class="form-group">
+                        {{form.point.label("누적 포인트")}}
+                        {{form.point(class="form-control", value=user.tot)}}
+                    </div>
+                    <div class="form-group">
+                        {{form.point.label("출석수")}}
+                        {{form.point(class="form-control", value=user.attend)}}
+                    </div>
+                    <div class="form-group">
+                        {{form.point.label("열정 온도")}}
+                        {{form.point(class="form-control", value=user.temp)}}
                     </div>
                     <button type="submit" class="btn btn-primary">저장</button>
                     <button type="button" class="btn btn-secondary" onclick="location.href='/admin'">취소</button>

@@ -4,12 +4,12 @@
         <meta charset='utf-8' />
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-title" content="경성 포인트 적립 시스템">
-        <meta name="application-name" content="경성 포인트 적립 시스템">
+        <meta name="apple-mobile-web-app-title" content="KSUBF 포도스탬프 랭킹">
+        <meta name="application-name" content="KSUBF 포도스탬프 랭킹">
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
-        <title>경성 포인트 적립</title>
+        <title>KSUBF 포도스탬프 랭킹</title>
         <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
@@ -19,10 +19,10 @@
    </head> 
    <body>
        <div id="header">
-                <h1 style=text-align:center;padding-top:2%>포인트 적립 시스템</h1>
+                <h1 style=text-align:center;padding-top:2%>나의 랭킹은?</h1>
                 <div class="login_info">
                     {%if userid%}
-                    <a href="{{ url_for('edit', userid=userid) }}">{{userid}}</a>
+                    <a>{{userid}}</a>
                     {%endif%}
                     <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
                 </div>
@@ -44,21 +44,18 @@
                 <thead>
                 <tr class="text-center table-dark">
                     <th>이름</th>
-                    <th>전화번호</th>
                     <th>포인트</th>
+                    <th>출석수</th>
+                    <th>열정온도</th>
                 </tr>
                 </thead>
                 <tbody>
                     {% if user_list %}
                     {% for user in user_list.items %}
                     <tr class="text-center">
-                        <td>
-                            <a href="{{ url_for('detail', userid=user.userid) }}">
-                                {{ user.name }}
-                            </a>
-                        </td>
-                        <td>{{ user.phone }}</td>
+                        <td>{{ user.name }}</td>
                         <td>{{ user.point }}</td>
+                        <td>{{ user.temp }}</td>
                     </tr>
                     {% endfor %}
                     {% else %}

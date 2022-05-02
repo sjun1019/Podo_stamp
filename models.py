@@ -11,6 +11,9 @@ class User(db.Model): #데이터 모델을 나타내는 객체 선언
     name = db.Column(db.String(150), nullable=False)
     phone = db.Column(db.String(120), unique=True, nullable=False)
     point = db.Column(db.Integer(), nullable=True)
+    tot = db.Column(db.Integer(), nullable=True)
+    attend = db.Column(db.Integer(), nullable=True)
+    temp = db.Column(db.Integer(), nullable=True)
 
 
     def set_password(self, password):

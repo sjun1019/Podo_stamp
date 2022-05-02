@@ -29,6 +29,9 @@ class DetailForm(FlaskForm):
     phone = StringField('phone', render_kw={'readonly': True})
     name = StringField('name', render_kw={'readonly': True})
     point = IntegerField('point')
+    tot = IntegerField('point')
+    attend = IntegerField('point')
+    temp = IntegerField('point')
 
 class EditForm(FlaskForm):
     userid = StringField('userid', render_kw={'readonly': True})
