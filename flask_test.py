@@ -105,12 +105,27 @@ def register():
             user.phone = form.data.get('phone')
             user.password = generate_password_hash(form.data.get('password'))
             user.point = 0
+            user.tot = 0
+            user.attend = 0
         else:
             flash('이미 존재하는 id 입니다')
         db.session.add(user) #DB저장
         db.session.commit() #변동사항 반영
         return redirect('/login')
     return render_template('register.html', form=form) #form이 어떤 form인지 명시한다
+
+
+@app.route('/ranking', methods=['GET', 'POST'])
+def ranking():
+    userid = session.get('userid')
+    page = request.args.get('page', type=int, default=1)
+    kw = request.args.get('kw', type=str, default='')
+    user_list = User.query.order_by(User.point.desc())
+    if kw:
+        search = '{}'.format(kw)
+        user_list = User.query.filter((User.name==search) | (User.phone==search))
+    user_list = user_list.paginate(page, per_page=10)
+    return render_template('ranking.html', userid=userid, user_list=user_list, rank_list2=enumerate(user_list.items), rank_list1=enumerate(user_list.items), page=page, kw=kw)
 
 
 @app.route('/login', methods=['GET','POST'])  

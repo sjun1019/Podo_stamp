@@ -4,12 +4,12 @@
         <meta charset='utf-8' />
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-title" content="KSUBF 포도스탬프 랭킹">
-        <meta name="application-name" content="KSUBF 포도스탬프 랭킹">
+        <meta name="apple-mobile-web-app-title" content="포도 포인트 랭킹">
+        <meta name="application-name" content="포도 포인트 랭킹">
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
-        <title>KSUBF 포도스탬프 랭킹</title>
+        <title>포도 포인트 랭킹</title>
         <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
@@ -19,20 +19,40 @@
    </head> 
    <body>
        <div id="header">
-                <h1 style=text-align:center;padding-top:2%>나의 랭킹은?</h1>
+                <!-- <button type="button" class="btn btn-outline-secondary" onclick="location.href='javascript:window.history.back()'">뒤로</button> -->
+                <h1 style=text-align:center;padding-top:5%>나의 랭킹은?</h1>
                 <div class="login_info">
                     {%if userid%}
                     <a>{{userid}}</a>
                     {%endif%}
-                    <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='/logout'">로그아웃</button>
                 </div>
+                    <table class="table" style="margin-top:2%">
+                        {% if rank_list1 %}
+                        {% for rank, user in rank_list1 %}
+                        {% if user.userid == userid %}
+                        <tr class="text-center" style="color:rgb(255, 157, 0); font-weight:bold; font-size:20pt">
+                            <td>{{ rank+1 }}위</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.point }}포인트</td>
+                            <td>{{ user.attend }}회 출석</td>
+                        {% endif %}
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td colspan="4">회원이 없습니다.</td>
+                        </tr>
+                        {% endif %}
+                    </table>
            </div>
        </div>
        <div id="body">
         <div class="container my-3">
+                <h2 style=text-align:center;padding-top:5%>전체 랭킹</h1>
             <div class="row my-3">
                 <div class="col-6">
-                    <div class="input-group">
+                    <div class="input-group" style="margin:2%">
                         <input type="text" id="search_kw" class="form-control" value="{{ kw or '' }}">
                         <div class="input-group-append">
                             <button class="btn btn-outline-primary" type="button" id="btn_search">찾기</button>
@@ -43,19 +63,28 @@
             <table class="table">
                 <thead>
                 <tr class="text-center table-dark">
+                    <th>랭킹</th>
                     <th>이름</th>
                     <th>포인트</th>
                     <th>출석수</th>
-                    <th>열정온도</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {% if user_list %}
-                    {% for user in user_list.items %}
+                    {% if rank_list2 %}
+                    {% for rank, user in rank_list2 %}
+                    {% if user.userid == userid %}
+                    <tr class="text-center" style="color:rgb(255, 153, 0); font-weight:bold; font-size:16pt">
+                    {% else %}
                     <tr class="text-center">
-                        <td>{{ user.name }}</td>
+                    {% endif %}
+                        <td>{{ rank+1 }}</td>
+                        <td>
+                            <a href="/">
+                                {{ user.name }}
+                            </a>
+                        </td>
                         <td>{{ user.point }}</td>
-                        <td>{{ user.temp }}</td>
+                        <td>{{ user.attend }}</td>
                     </tr>
                     {% endfor %}
                     {% else %}

@@ -31,10 +31,13 @@ class DetailForm(FlaskForm):
     point = IntegerField('point')
     tot = IntegerField('point')
     attend = IntegerField('point')
-    temp = IntegerField('point')
+    # temp = IntegerField('point')
 
 class EditForm(FlaskForm):
     userid = StringField('userid', render_kw={'readonly': True})
     phone = StringField('phone', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
     point = IntegerField('point', render_kw={'readonly': True})
+    tot = IntegerField('point', render_kw = {'readonly': True})
+    attend = IntegerField('point', render_kw = {'readonly': True})
+    # temp = IntegerField('point', render_kw = {'readonly': True})

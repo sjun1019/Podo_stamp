@@ -4,12 +4,12 @@
         <meta charset='utf-8' />
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-title" content="경성 포인트 적립 시스템">
-        <meta name="application-name" content="경성 포인트 적립 시스템">
+        <meta name="apple-mobile-web-app-title" content="경성 포도 포인트">
+        <meta name="application-name" content="경성 포도 포인트">
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
-        <title>경성 포인트 적립</title>
+        <title>포도 포인트 적립</title>
         <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
@@ -24,7 +24,7 @@
                     {%if userid%}
                     <a href="{{ url_for('edit', userid=userid) }}">{{userid}}</a>
                     {%endif%}
-                    <button type="button" class="btn btn-secondary" onclick="location.href='/logout'">로그아웃</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='/logout'">로그아웃</button>
                 </div>
            </div>
        </div>
@@ -44,8 +44,11 @@
                 <thead>
                 <tr class="text-center table-dark">
                     <th>이름</th>
-                    <th>전화번호</th>
                     <th>포인트</th>
+                    <th>누적포인트</th>
+                    <th>출석수</th>
+                    <th>포인트</th>
+                    <th>출석</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,8 +60,11 @@
                                 {{ user.name }}
                             </a>
                         </td>
-                        <td>{{ user.phone }}</td>
                         <td>{{ user.point }}</td>
+                        <td>{{ user.tot }}</td>
+                        <td>{{ user.attend }}</td>
+                        <td><button>-</button><button>+</button></td>
+                        <td><button>-</button><button>+</button></td>
                     </tr>
                     {% endfor %}
                     {% else %}

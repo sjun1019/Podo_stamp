@@ -13,7 +13,7 @@ class User(db.Model): #데이터 모델을 나타내는 객체 선언
     point = db.Column(db.Integer(), nullable=True)
     tot = db.Column(db.Integer(), nullable=True)
     attend = db.Column(db.Integer(), nullable=True)
-    temp = db.Column(db.Integer(), nullable=True)
+    # temp = db.Column(db.Integer(), nullable=True)
 
 
     def set_password(self, password):
