@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+        <meta charset='utf-8' />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="경성 타임">
+        <meta name="application-name" content="경성 타임">
+        <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
+        <title>경성 타임</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+   </head> 
+   <body>
+       <div id="header">
+                <!-- <button type="button" class="btn btn-outline-secondary" onclick="location.href='javascript:window.history.back()'">뒤로</button> -->
+                <h1 style=text-align:center;padding-top:5%>경성 타임</h1>
+                <div class="login_info">
+                    {%if userid%}
+                    <a>{{userid}}</a>
+                    {%endif%}
+                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='/logout'">로그아웃</button>
+                </div>
+                    <table class="table" style="margin-top:2%">
+                    <thead>
+                    <tr class="text-center table-dark">
+                        <th></th>
+                        <th>제목</th>
+                        <th>작성일</th>
+                        <th>추천수</th>
+                        <th>조회수</th>
+                    </tr>
+                    </thead>
+                        {% if announce_list %}
+                        {% for rank, announce in announce_list %}
+                        <tr class="text-center" style="color:rgb(255, 157, 0); font-weight:bold; font-size:20pt">
+                            <td><a>[공지]</a> {{ rank+1 }}</td>
+                            <td>
+                                <a href="/">
+                                    {{ announce.title }}
+                                </a>
+                            </td>
+                            <td>{{ announce.like }}</td>
+                            <td>{{ announce.date }}</td>
+                            <td>{{ announce.view }}</td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td colspan="4">회원이 없습니다.</td>
+                        </tr>
+                        {% endif %}
+                    </table>
+                    <table class="table" style="margin-top:2%">
+                        {% if hot_list %}
+                        {% for rank, hot in hot_list %}
+                        <tr class="text-center" style="color:rgb(255, 157, 0); font-weight:bold; font-size:20pt">
+                            <td><a>[인기]</a> {{ rank+1 }}</td>
+                            <td>
+                                <a href="/">
+                                    {{ hot.title }}
+                                </a>
+                            </td>
+                            <td>{{ hot.title }}</td>
+                            <td>{{ hot.like }}</td>
+                            <td>{{ hot.date }}</td>
+                            <td>{{ hot.view }}</td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td colspan="4">회원이 없습니다.</td>
+                        </tr>
+                        {% endif %}
+                    </table>
+           </div>
+       </div>
+       <div id="body">
+        <div class="container my-3">
+            <div class="row my-3">
+                <div class="col-6">
+                    <div class="input-group" style="margin:2%">
+                        <input type="text" id="search_kw" class="form-control" value="{{ kw or '' }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="button" id="btn_search">찾기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <tbody>
+                    {% if content_list %}
+                    {% for rank, content in content_list %}
+                    <tr class="text-center">
+                        <td>{{content.id}}</td>
+                        <td>
+                            <a href="/">
+                                {{ content.title }}
+                            </a>
+                        </td>
+                        <td>{{ content.like }}</td>
+                        <td>{{ content.date }}</td>
+                        <td>{{ content.view }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="4">회원이 없습니다.</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            <!-- 페이징처리 시작 -->
+            <ul class="pagination justify-content-center">
+                <!-- 이전페이지 -->
+                {% if user_list.has_prev %}
+                <li class="page-item">
+                    <a class="page-link" data-page="{{ user_list.prev_num }}" href="javascript:void(0)">이전</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="javascript:void(0)">이전</a>
+                </li>
+                {% endif %}
+                {% for page_num in user_list.iter_pages() %}
+                {% if page_num %}
+                {% if page_num != user_list.page %}
+                <li class="page-item">
+                    <a class="page-link" data-page="{{ page_num }}" href="javascript:void(0)">{{ page_num }}</a>
+                </li>
+                {% else %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">{{ page_num }}</a>
+                </li>
+                {% endif %}
+                {% else %}
+                <li class="disabled">
+                    <a class="page-link" href="javascript:void(0)">...</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                <!-- 다음페이지 -->
+                {% if user_list.has_next %}
+                <li class="page-item">
+                    <a class="page-link" data-page="{{ user_list.next_num }}" href="javascript:void(0)">다음</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="javascript:void(0)">다음</a>
+                </li>
+                {% endif %}
+            </ul>
+            <!-- 페이징처리 끝 -->
+        </div>
+        <form id="searchForm" method="get" action="{{ url_for('admin') }}">
+            <input type="hidden" id="kw" name="kw" value="{{ kw or '' }}">
+            <input type="hidden" id="page" name="page" value="{{ page }}">
+        </form>
+        <script type='text/javascript'>
+        const page_elements = document.getElementsByClassName("page-link");
+        Array.from(page_elements).forEach(function(element) {
+            element.addEventListener('click', function() {
+                document.getElementById('page').value = this.dataset.page;
+                document.getElementById('searchForm').submit();
+            });
+        });
+        function search(){
+            document.getElementById('kw').value = document.getElementById('search_kw').value;
+            document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+            document.getElementById('searchForm').submit();
+        }
+        $("#search_kw").keypress(function (f){
+            if(f.keyCode == 13){
+                search();
+            }
+        });
+        const btn_search = document.getElementById("btn_search");
+        btn_search.addEventListener('click', function() {
+            search();
+        });
+        </script>
+       </div>
+   </body>
+</html>

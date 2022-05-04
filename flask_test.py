@@ -64,6 +64,9 @@ def detail(userid):
     
 @app.route('/edit/<userid>', methods=['GET','POST'])
 def edit(userid):
+    userid = session.get('userid')
+    if userid == None:
+        return redirect('/login')
     form = EditForm()
     user = User.query.filter_by(userid=userid).first()
     if request.method == 'POST':
@@ -76,6 +79,9 @@ def edit(userid):
 
 @app.route('/delete/<userid>', methods=['GET','POST'])
 def delete(userid):
+    userid = session.get('userid')
+    if userid == None:
+        return redirect('/login')
     form = FlaskForm()
     if session.get('userid') == "admin":
         user = User.query.filter_by(userid=userid).first()
@@ -115,9 +121,26 @@ def register():
     return render_template('register.html', form=form) #form이 어떤 form인지 명시한다
 
 
+@app.route('/kstime', methods=['GET', 'POST'])
+def kstime():
+    userid = session.get('userid')
+    if userid == None:
+        return redirect('/login')
+    page = request.args.get('page', type=int, default=1)
+    kw = request.args.get('kw', type=str, default='')
+    content_list = Content.query.order_by(User.point.desc())
+    if kw:
+        search = '{}'.format(kw)
+        user_list = User.query.filter((User.name==search) | (User.phone==search))
+    user_list = user_list.paginate(page, per_page=10)
+    return render_template('kstime.html', userid=userid, user_list=user_list, rank_list2=enumerate(user_list.items), rank_list1=enumerate(user_list.items), page=page, kw=kw)
+
+
 @app.route('/ranking', methods=['GET', 'POST'])
 def ranking():
     userid = session.get('userid')
+    if userid == None:
+        return redirect('/login')
     page = request.args.get('page', type=int, default=1)
     kw = request.args.get('kw', type=str, default='')
     user_list = User.query.order_by(User.point.desc())

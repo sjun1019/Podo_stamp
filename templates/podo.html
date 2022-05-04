@@ -22,6 +22,7 @@
    <body style="overflow-x: hidden;overflow-y: hidden;">
        <div id="header">
            <div class="login_info" style="font-size: 17pt">
+                <button type="button" class="btn btn-outline-secondary" style="margin-right:2%" onclick="location.href='/kstime'">경성타임</button>
                 <button type="button" class="btn btn-outline-secondary" style="margin-right:2%" onclick="location.href='/ranking'">나의 랭킹은?</button>
                 {%if name%}
                 <a href="{{ url_for('edit', userid=userid) }}">{{name}}</a>
