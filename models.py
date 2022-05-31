@@ -39,8 +39,8 @@ class Comment(db.Model): #데이터 모델을 나타내는 객체 선언
     __tablename__ = 'comment_table' #테이블 이름
     
     id = db.Column(db.Integer, primary_key=True)
-    cont_id = db.Column(db.Integer(), nullable=false)
-    cmnt_grp = db.Column(db.Integer(), nullable=false)
+    cont_id = db.Column(db.Integer(), nullable=False)
+    cmnt_grp = db.Column(db.Integer(), nullable=False)
     userid = db.Column(db.String(150), unique=True, nullable=False)
     comment = db.Column(db.String(500), unique=True, nullable=False)
     like = db.Column(db.Integer(), nullable=True)
