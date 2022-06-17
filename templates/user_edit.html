@@ -1,57 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-        <meta charset='utf-8' />
-        <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
-        <title>포도 포인트 개인정보 수정</title>
-        <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-   </head> 
-   <body>
-       <div id="header">
-                <h1 style=text-align:center;padding-top:5%>개인정보 수정</h1>
-                <div class="login_info">
-                    {%if userid%}
-                    {{userid}}
-                    {%endif%}
-                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='/logout'">로그아웃</button>
-                </div>
-           </div>
-       </div>
-       <div id="body">
-        <div class="container my-3">
-            <div class="row mt-5">
-                <div class="col-12">
-                <form method="POST" >
-                    {{form.csrf_token}}
-                    <div class="form-group">
-                        {{form.userid.label("아이디")}}
-                        {{form.userid(class="form-control", value=user.userid)}}
-                    </div>
-                    <div class="form-group">
-                        {{form.name.label("이름")}}
-                        {{form.name(class="form-control", value=user.name)}}
-                    </div>
-                    <div class="form-group">
-                        {{form.phone.label("전화번호")}}
-                        {{form.phone(class="form-control", value=user.phone)}}
-                    </div>
-                    <div class="form-group">
-                        {{form.point.label("포인트")}}
-                        {{form.point(class="form-control", value=user.point)}}
-                    </div>
-                    <button type="submit" class="btn btn-primary">저장</button>
-                    <button type="button" class="btn btn-secondary" onclick="location.href='/'">취소</button>
-                    <button type="button" class="btn btn-secondary" onclick="location.href='/delete/{{userid}}'">회원 탈퇴</button>
-                </form>
+<head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
+    <title>포도 포인트 개인정보 수정</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head> 
+<body>
+   <div id="header"class="col-12 pt-2 title font-weight-bold fl-left">
+        <div class="col-xs-3 float-left pl-0">
+            <button type="button" class="btn txt-purple" onclick="location.href='/'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+              </svg>
+          </button>    
+      </div>
+      <div class="col-xs-9 text-center">
+          <img src="../static/images/sub_ksubf.png"/>
+          개인정보 수정   
+      </div>
+</div>
+<div id="body" class="col-12 sub_body">
+    <div class="container my-3">
+        <div class="row mt-5">
+            <div class="col-12">
+             <div class="login_info">
+                {%if userid%}
+                {{userid}}
+                {%endif%}
+                <button type="button" class="btn btn-link text-muted" onclick="location.href='/logout'">로그아웃</button>
             </div>
+            <form method="POST" >
+                {{form.csrf_token}}
+                <div class="form-group">
+                    <!-- <label class="font-weight-bold font-10">아이디</label> -->
+                    <!-- <input type="text" class="form-control" value={{user.userid}} readonly> -->
+                    {{form.userid.label("아이디")}}
+                    {{form.userid(class="form-control", value=user.userid)}}
+                </div>
+                <div class="form-group">
+                    <!-- <label class="font-weight-bold font-10">이름</label> -->
+                    <!-- <input type="text" class="form-control" value={{user.name}} placeholder="이름을 입력하세요."> -->
+                    {{form.name.label("이름")}}
+                    {{form.name(class="form-control", value=user.name)}}
+                </div>
+                <div class="form-group">
+                    <!-- <label class="font-weight-bold font-10">연락처( - 빼고 입력!)</label> -->
+                    <!-- <input type="text" class="form-control" value={{user.phone}} placeholder="연락처를 입력하세요."> -->
+                    {{form.phone.label("연락처 ( - 빼고 입력!)")}}
+                    {{form.phone(class="form-control", value=user.phone)}}
+                </div>
+                <div class="form-group">
+                    <!-- <label class="font-weight-bold font-10">포인트</label> -->
+                    <!-- <input type="text" class="form-control" value={{user.point}} readonly> -->
+                    {{form.point.label("포인트")}}
+                    {{form.point(class="form-control", value=user.point)}}
+                </div>
+                <button type="button" class="btn btn-link text-muted" onclick="location.href='/delete/{{userid}}'">회원 탈퇴</button>
+                <button type="submit" class="btn btn-purple float-right">저장</button>
+            </form>
         </div>
-       </div>
-   </body>
+    </div>
+</div>
+</body>
 </html>

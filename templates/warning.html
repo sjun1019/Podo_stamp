@@ -5,6 +5,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
+         <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
         <title>KSUBF 포도스탬프 회원탈퇴</title>
         <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
@@ -14,28 +15,29 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
    </head> 
    <body>
-       <div id="header">
-                <h1 style=text-align:center>포도 스템프 회원탈퇴</h1>
-                <div class="login_info">
-                    {%if userid%}
-                    {{userid}}
-                    {%endif%}
-                </div>
-           </div>
-       </div>
-       <div id="body">
-        <div class="container my-3">
-            <div class="row mt-5">
-                <div class="col-12">
-                    <b style="font-size:30pt;font-weight:bold;color:red;text-align:center">회원 탈퇴 시 모든 정보가 사라집니다.<br>동의하십니까?</b>
-                    <br>
-                <form method="POST" >
-                    {{form.csrf_token}}
-                    <button type="submit" class="btn btn-primary">회원 탈퇴</button>
-                    <button type="button" class="btn btn-secondary" onclick="location.href='/edit/{{userid}}'">취소</button>
-                </form>
-            </div>
+    <div id="header">
+      <h6 class="text-center py-3 mx-5" style="border-bottom: 2px solid #BDBDBD;">회원탈퇴 안내</h6>
+      <div class="login_info mx-5">
+        {%if userid%}
+        {{userid}}
+        {%endif%}
+      </div>
+    </div>
+    <div id="body">
+      <div class="container my-3">
+        <div class="row mt-3">
+          <div class="col-12 text-center">
+            <b>회원 탈퇴 시 모든 정보가 사라집니다.<br>동의하십니까?</b>
+            <form method="POST" >
+              {{form.csrf_token}}
+              <div class="py-3">
+                <button type="button" class="btn btn-outline-secondary" onclick="location.href='/edit/{{userid}}'">취소</button>
+                <button type="submit" class="btn btn-purple">탈퇴</button>  
+              </div>
+            </form>
+          </div>
         </div>
-       </div>
+      </div>
+    </div>
    </body>
 </html>

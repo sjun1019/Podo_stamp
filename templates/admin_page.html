@@ -1,70 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-        <meta charset='utf-8' />
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-title" content="경성 포도 포인트">
-        <meta name="application-name" content="경성 포도 포인트">
-        <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
-        <title>포도 포인트 적립</title>
-        <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-   </head> 
-   <body>
-       <div id="header">
-                <h1 style=text-align:center;padding-top:2%>포인트 적립 시스템</h1>
-                <div class="login_info">
-                    {%if userid%}
-                    <a href="{{ url_for('edit', userid=userid) }}">{{userid}}</a>
-                    {%endif%}
-                    <button type="button" class="btn btn-outline-secondary" onclick="location.href='/logout'">로그아웃</button>
-                </div>
-           </div>
-       </div>
-       <div id="body">
-        <div class="container my-3">
-            <div class="row my-3">
-                <div class="col-6">
-                    <div class="input-group">
-                        <input type="text" id="search_kw" class="form-control" value="{{ kw or '' }}">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-primary" type="button" id="btn_search">찾기</button>
-                        </div>
+<head>
+    <meta charset='utf-8' />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="경성 포도 포인트">
+    <meta name="application-name" content="경성 포도 포인트">
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
+    <title>KSUBF 포도스탬프-관리자</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head> 
+<body>
+    <div id="header" class="col-12 pt-2 title font-weight-bold fl-left">
+       <div class="col-xs-9 text-center">
+          <img src="../static/images/sub_ksubf.png"/>
+          포인트 적립      
+      </div>
+  </div>
+<div id="body" class="col-12 sub_body">
+    <div class="container">
+        <div class="row">
+            <div class="login_info col-12">
+                <!-- {%if userid%}
+                <a class="text-muted" href="{{ url_for('edit', userid=userid) }}">{{userid}}</a>
+                {%endif%} -->
+                <a class="text-muted font-weight-bold" href="{{ url_for('edit', userid=userid) }}">{{userid}}</a>
+                <button type="button" class="btn btn-link text-muted py-0 float-right" onclick="location.href='/logout'">로그아웃</button>
+            </div>
+            <div>
+                <div class="input-group mt-3 fl-right">
+                    <input type="text" id="search_kw" class="form-control h-25" value="{{ kw or '' }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-purple btn-sm font-10" type="button" id="btn_search">검색</button>
                     </div>
                 </div>
             </div>
-            <table class="table">
-                <thead>
-                <tr class="text-center table-dark">
+        </div>
+        <table class="table">
+            <thead>
+                <tr class="text-center table-dark font-10">
                     <th>이름</th>
+                    <!-- <th>포인트</th>-->
                     <th>포인트</th>
-                    <th>누적포인트</th>
                     <th>출석수</th>
-                    <th>포인트</th>
-                    <th>출석</th>
-                </tr>
+                    <th>최종 출석일</th>
+                    <!--<th>포인트</th>
+                        <th>출석</th>-->
+                    </tr>
                 </thead>
                 <tbody>
                     {% if user_list %}
                     {% for user in user_list.items %}
-                    <tr class="text-center">
-                        <td>
-                            <a href="{{ url_for('detail', userid=user.userid) }}">
+                    <tr class="text-center font-10">
+                        <td class="font-weight-bold">
+                            <a class="text-muted" href="{{ url_for('detail', userid=user.userid) }}">
                                 {{ user.name }}
                             </a>
                         </td>
                         <td>{{ user.point }}</td>
-                        <td>{{ user.tot }}</td>
+                        <!-- <td>{{ user.tot }}</td> -->
                         <td>{{ user.attend }}</td>
-                        <td><button>-</button><button>+</button></td>
-                        <td><button>-</button><button>+</button></td>
+                        <td>date</td> <!--출석체크한 날짜 표시-->
+                      <!--<td><button>-</button><button>+</button></td>
+                        <td><button>-</button><button>+</button></td>-->
                     </tr>
                     {% endfor %}
                     {% else %}
@@ -121,15 +127,15 @@
             <input type="hidden" id="page" name="page" value="{{ page }}">
         </form>
         <script type='text/javascript'>
-        const page_elements = document.getElementsByClassName("page-link");
-        Array.from(page_elements).forEach(function(element) {
-            element.addEventListener('click', function() {
-                document.getElementById('page').value = this.dataset.page;
-                document.getElementById('searchForm').submit();
+            const page_elements = document.getElementsByClassName("page-link");
+            Array.from(page_elements).forEach(function(element) {
+                element.addEventListener('click', function() {
+                    document.getElementById('page').value = this.dataset.page;
+                    document.getElementById('searchForm').submit();
+                });
             });
-        });
-        function search(){
-            document.getElementById('kw').value = document.getElementById('search_kw').value;
+            function search(){
+                document.getElementById('kw').value = document.getElementById('search_kw').value;
             document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
             document.getElementById('searchForm').submit();
         }
@@ -142,7 +148,7 @@
         btn_search.addEventListener('click', function() {
             search();
         });
-        </script>
-       </div>
-   </body>
+    </script>
+</div>
+</body>
 </html>
