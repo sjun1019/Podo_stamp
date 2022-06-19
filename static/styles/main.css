@@ -169,3 +169,8 @@ input:focus {
 .bd-right {
     border-left: 2px solid #E8D9FF;
 }
+
+.point-form {
+    border: 0;
+    width: 40px;
+}

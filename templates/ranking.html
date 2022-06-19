@@ -19,25 +19,27 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head> 
 <body>
-   <div id="header" class="w-100 pt-2 title font-weight-bold fl-left">
-    <!-- <button type="button" class="btn btn-outline-secondary" onclick="location.href='javascript:window.history.back()'">뒤로</button> -->
-    <div class="col-xs-3 float-left pl-0">
-        <button type="button" class="btn txt-purple" onclick="location.href='/admin'">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-          </svg>
-      </button>    
-  </div>
-  <div class="col-xs-9 text-center">
-      <img src="../static/images/sub_ksubf.png"/>
-      전체 랭킹    
-  </div>
-      <!-- <div class="login_info">
+    <div id="header" class="w-100 pt-2 title font-weight-bold fl-left">
+        <!-- <button type="button" class="btn btn-outline-secondary" onclick="location.href='javascript:window.history.back()'">뒤로</button> -->
+        <div class="col-xs-3 float-left pl-0">
+            <button type="button" class="btn txt-purple" onclick="location.href='/admin'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                </svg>
+            </button>
+        </div>
+        <div class="col-xs-9 text-center">
+            <img src="../static/images/sub_ksubf.png" />
+            전체 랭킹
+        </div>
+        <!-- <div class="login_info">
         {%if userid%}
         <a>{{userid}}</a>
         {%endif%}
     </div> -->
-    <!-- <table style="margin-top:2%">
+        <!-- <table style="margin-top:2%">
         {% if rank_list1 %}
         {% for rank, user in rank_list1 %}
         {% if user.userid == userid %}
@@ -55,7 +57,7 @@
         </tr>
         {% endif %}
     </table> -->
-    <div class="w-100 txt-purple sub_body mt-4 text-center" style="height: 50px;">
+        <!-- <div class="w-100 txt-purple sub_body mt-4 text-center" style="height: 50px;">
         <div style="margin-top:11px; font-weight: bold;">
         {% if rank_list1 %}
         {% for rank, user in rank_list1 %}
@@ -73,17 +75,17 @@
             <td colspan="4">회원이 없습니다.</td>
         </tr>
         {% endif %}
+    </div> -->
     </div>
-</div>
-<div id="body" class="col-12 sub_body" style="margin-top:150px !important;">
-    <div class="container">
+    <div id="body" class="col-12 sub_body" style="margin-top:150px !important;">
+        <div class="container">
             <div class="row my-3">
                 <div class="col-6">
                     <div class="input-group" style="margin:2%">
                         <input type="text" id="search_kw" class="form-control" value="{{ kw or '' }}">
                         <div class="input-group-append">
-                        <button class="btn btn-purple btn-sm font-10" type="button" id="btn_search">검색</button>
-                    </div>
+                            <button class="btn btn-purple btn-sm font-10" type="button" id="btn_search">검색</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,19 +104,19 @@
                     {% if user.userid == userid %}
                     <tr class="text-center txt-purple" style="font-size:16pt">
                         {% else %}
-                        <tr class="text-center font-10">
-                            {% endif %}
-                            <td>{{ rank+1 }}</td>
-                            <td>{{ user.name }}</td>
-                            <td>{{ user.point }}</td>
-                            <td>{{ user.attend }}</td>
-                        </tr>
-                        {% endfor %}
-                        {% else %}
-                        <tr>
-                            <td colspan="4">회원이 없습니다.</td>
-                        </tr>
+                    <tr class="text-center font-10">
                         {% endif %}
+                        <td>{{ rank+1 }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.point }}</td>
+                        <td>{{ user.attend }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="4">회원이 없습니다.</td>
+                    </tr>
+                    {% endif %}
                     </tr>
                 </tbody>
             </table>
@@ -166,27 +168,28 @@
         </form>
         <script type='text/javascript'>
             const page_elements = document.getElementsByClassName("page-link");
-            Array.from(page_elements).forEach(function(element) {
-                element.addEventListener('click', function() {
+            Array.from(page_elements).forEach(function (element) {
+                element.addEventListener('click', function () {
                     document.getElementById('page').value = this.dataset.page;
                     document.getElementById('searchForm').submit();
                 });
             });
-            function search(){
+            function search() {
                 document.getElementById('kw').value = document.getElementById('search_kw').value;
-            document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
-            document.getElementById('searchForm').submit();
-        }
-        $("#search_kw").keypress(function (f){
-            if(f.keyCode == 13){
-                search();
+                document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+                document.getElementById('searchForm').submit();
             }
-        });
-        const btn_search = document.getElementById("btn_search");
-        btn_search.addEventListener('click', function() {
-            search();
-        });
-    </script>
-</div>
+            $("#search_kw").keypress(function (f) {
+                if (f.keyCode == 13) {
+                    search();
+                }
+            });
+            const btn_search = document.getElementById("btn_search");
+            btn_search.addEventListener('click', function () {
+                search();
+            });
+        </script>
+    </div>
 </body>
+
 </html>

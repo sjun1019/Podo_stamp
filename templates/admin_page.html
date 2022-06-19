@@ -36,7 +36,7 @@
                 <button type="button" class="btn btn-link text-muted py-0 float-right" onclick="location.href='/logout'">로그아웃</button>
             </div>
             <div>
-                <div class="input-group mt-3 fl-right">
+                <div class="input-group mt-3 w-75" style="margin-left:5%">
                     <input type="text" id="search_kw" class="form-control h-25" value="{{ kw or '' }}">
                     <div class="input-group-append">
                         <button class="btn btn-purple btn-sm font-10" type="button" id="btn_search">검색</button>
@@ -44,16 +44,14 @@
                 </div>
             </div>
         </div>
-        <table class="table">
+        <table class="table mt-3">
             <thead>
-                <tr class="text-center table-dark font-10">
+                <tr class="text-center table font-10">
                     <th>이름</th>
                     <!-- <th>포인트</th>-->
                     <th>포인트</th>
                     <th>출석수</th>
-                    <th>최종 출석일</th>
-                    <!--<th>포인트</th>
-                        <th>출석</th>-->
+                    <th>출석</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,12 +63,17 @@
                                 {{ user.name }}
                             </a>
                         </td>
-                        <td>{{ user.point }}</td>
+                        <td>
+                            <label style="width:20px;">{{user.point}}</label>
+                            <button>⇧</button>
+                        </td>
                         <!-- <td>{{ user.tot }}</td> -->
-                        <td>{{ user.attend }}</td>
-                        <td>date</td> <!--출석체크한 날짜 표시-->
-                      <!--<td><button>-</button><button>+</button></td>
-                        <td><button>-</button><button>+</button></td>-->
+                        <td>
+                            <label style="width:20px;">{{ user.attend }}</label>
+                        </td>
+                        <td>
+                            <input type="checkbox"></input>
+                        </td>
                     </tr>
                     {% endfor %}
                     {% else %}
@@ -100,7 +103,7 @@
                 </li>
                 {% else %}
                 <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">{{ page_num }}</a>
+                    <a class="page-link" style="background-color: #6E2FC7;" href="#">{{ page_num }}</a>
                 </li>
                 {% endif %}
                 {% else %}

@@ -5,7 +5,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
-        <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
+        <!-- <link rel="stylesheet" type="text/css" href="../static/styles/main.css"> -->
         <title>포도 포인트 적립 시스템</title>
         <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
@@ -48,7 +48,9 @@
                         <label class="font-weight-bold font-10 pt-2">포인트 적립/누적</label>
                         <div>
                             <button type="button" class="btn" onclick="count('minus')">-</button>
-                            <label id="lb_num">0</label> <!--적립 표시-->
+                            <!-- <label id="lb_num">0</label> 적립 표시 -->
+                            {{form.csrf_token}}
+                            {{form.point(id="lb_num", class="point-form", value=user.point)}}
                             <button type="button" class="btn" onclick="count('plus')">+</button>
                             <label class="px-2 bd-right">{{user.point}}</label>point<!--누적 포인트 표시-->
                         </div>
@@ -108,7 +110,7 @@
     function count(type)  {
         const resultElement = document.getElementById('lb_num');
 
-        let number = resultElement.innerText;
+        let number = resultElement.value;
 
         if(type === 'plus') {
             number = parseInt(number) + 1;
@@ -116,7 +118,7 @@
             number = parseInt(number) - 1;
         }
 
-        resultElement.innerText = number;
+        resultElement.value = number;
     }
 
     var OndoRange = document.getElementById("C_Range");
