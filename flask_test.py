@@ -47,7 +47,13 @@ def admin():
         search = '{}'.format(kw)
         user_list = User.query.filter((User.name==search) | (User.phone==search))
     user_list = user_list.paginate(page, per_page=10)
-    return render_template('admin_page.html', userid=userid, user_list=user_list, page=page, kw=kw)
+    form = DetailForm()
+    if request.method == 'POST':
+        user_id = form.data.get('userid')
+        user = User.query.filter_by(userid=user_id).first()
+        user.point = form.data.get('point')
+        db.session.commit()
+    return render_template('admin_page.html', userid=userid, user_list=user_list, page=page, kw=kw, form=form)
 
 
 @app.route('/detail/<userid>', methods=['GET','POST'])

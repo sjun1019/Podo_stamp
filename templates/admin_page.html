@@ -48,7 +48,6 @@
             <thead>
                 <tr class="text-center table font-10">
                     <th>이름</th>
-                    <!-- <th>포인트</th>-->
                     <th>포인트</th>
                     <th>출석수</th>
                     <th>출석</th>
@@ -59,20 +58,21 @@
                     {% for user in user_list.items %}
                     <tr class="text-center font-10">
                         <td class="font-weight-bold">
-                            <a class="text-muted" href="{{ url_for('detail', userid=user.userid) }}">
-                                {{ user.name }}
-                            </a>
+                            <a class="text-muted" href="{{ url_for('detail', userid=user.userid) }}">{{ user.name }}</a>
                         </td>
                         <td>
-                            <label style="width:20px;">{{user.point}}</label>
-                            <button>⇧</button>
+                            <form id="form_{{loop.index}}">
+                                {{form.userid(style="display:none", value=user.userid)}}
+                                {{form.point(class="point-form", value=user.point)}}
+                                <button id="button_{{loop.index}}", class="checkBtn">⇧</button>
+                            </form>
                         </td>
                         <!-- <td>{{ user.tot }}</td> -->
                         <td>
-                            <label style="width:20px;">{{ user.attend }}</label>
+                            <label>{{ user.attend }}</label>
                         </td>
                         <td>
-                            <input type="checkbox"></input>
+                            <input id="attend_check" type="checkbox" onclick="attend()"></input>
                         </td>
                     </tr>
                     {% endfor %}
@@ -139,17 +139,28 @@
             });
             function search(){
                 document.getElementById('kw').value = document.getElementById('search_kw').value;
-            document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
-            document.getElementById('searchForm').submit();
-        }
-        $("#search_kw").keypress(function (f){
-            if(f.keyCode == 13){
-                search();
+                document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+                document.getElementById('searchForm').submit();
             }
-        });
-        const btn_search = document.getElementById("btn_search");
-        btn_search.addEventListener('click', function() {
-            search();
+            $(".checkBtn").click(function(){
+                var checkBtn = $(this);
+                var tr = checkBtn.parent().parent();
+                var td = tr.children();
+
+                var point = td.eq(1).prop();
+                td.eq(1).prop("value", point+1);
+
+                let [a, b] = checkBtn.prop("id").split('_');
+                document.getElementById("form_"+b).submit();
+            });
+            $("#search_kw").keypress(function (f){
+                if(f.keyCode == 13){
+                    search();
+                }
+            });
+            const btn_search = document.getElementById("btn_search");
+            btn_search.addEventListener('click', function() {
+                search();
         });
     </script>
 </div>
