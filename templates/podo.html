@@ -31,34 +31,34 @@
       <a class="dropdown-item" href="/kstime">경성타임</a>
       <a class="dropdown-item" href="/ranking">랭킹확인</a>
       <a class="dropdown-item" href="{{ url_for('edit', userid=userid) }}">마이페이지</a>
-     <!--  {%if name%}
-                <a href="{{ url_for('edit', userid=userid) }}">{{name}}</a>
-                <a style="margin-right:2%"> 님  환영합니다  </a>
-                {%endif%} -->
-                <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="/logout">로그아웃</a>
-                </div>
-              
-           <!-- <div class="login_info" style="font-size: 13pt">
-                <button type="button" class="btn btn-link" style="margin-right:2%" onclick="location.href='/kstime'">경성타임</button>
-                <button type="button" class="btn btn-link" style="margin-right:2%" onclick="location.href='/ranking'">나의 랭킹은?</button>
-                {%if name%}
-                <a href="{{ url_for('edit', userid=userid) }}">{{name}}</a>
-                <a style="margin-right:2%"> 님  환영합니다  </a>
-                {%endif%}
-                <button type="button" class="btn btn-link" onclick="location.href='/logout'">로그아웃</button>
-              </div> -->
-            </div>
-          </div>
-          <div id="body" class="col-12 sub_body">
-           <div class="podo">
-            <img src="../static/images/vine.svg" style="position:relative">
-            <img class={{stamp}} style="position:absolute;margin:0%">
-            <img class={{star}} style="position:absolute;margin:2.6%">
-          </div>
+        <!--  {%if name%}
+        <a href="{{ url_for('edit', userid=userid) }}">{{name}}</a>
+        <a style="margin-right:2%"> 님  환영합니다  </a>
+        {%endif%} -->
+        <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">로그아웃</a>
         </div>
-      </body>
-      </html>
+      
+        <!-- <div class="login_info" style="font-size: 13pt">
+        <button type="button" class="btn btn-link" style="margin-right:2%" onclick="location.href='/kstime'">경성타임</button>
+        <button type="button" class="btn btn-link" style="margin-right:2%" onclick="location.href='/ranking'">나의 랭킹은?</button>
+        {%if name%}
+        <a href="{{ url_for('edit', userid=userid) }}">{{name}}</a>
+        <a style="margin-right:2%"> 님  환영합니다  </a>
+        {%endif%}
+        <button type="button" class="btn btn-link" onclick="location.href='/logout'">로그아웃</button>
+      </div> -->
+    </div>
+  </div>
+  <div id="body" class="col-12 sub_body">
+    <div class="podo">
+    <img src="../static/images/vine.svg" style="position:relative">
+    <img class={{stamp}} style="position:absolute;margin:0%;margin-top:65%">
+    <img class={{star}} style="position:absolute;margin:2.6%">
+  </div>
+</div>
+</body>
+</html>
 
 
 
