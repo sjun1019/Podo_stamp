@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset='utf-8' />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -8,7 +9,8 @@
   <meta name="apple-mobile-web-app-title" content="KSUBF 포도스탬프">
   <meta name="application-name" content="KSUBF 포도스탬프">
   <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
   <!-- <link rel="stylesheet" type="text/css" href="../static/styles/main.css"> -->
   <title>KSUBF 포도스탬프</title>
@@ -16,30 +18,38 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</head> 
-<body style="overflow-x: hidden;overflow-y: hidden;">
- <div id="header"class="col-12 pt-2 title">
-  <div class="col-7 float-left">
-    <img src="../static/images/main_ci.png"/>
-  </div>
-  <div class="dropdown col-5 float-left text-right">
-    <button type="button" class="btn dropdown-toggle txt-purple" data-toggle="dropdown">{{name}}</button> <!--이름 또는 아이디 표시-->
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="/kstime">경성타임</a>
-      <a class="dropdown-item" href="/ranking">랭킹확인</a>
-      <a class="dropdown-item" href="{{ url_for('edit', userid=userid) }}">마이페이지</a>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</head>
+
+<body style="overflow-x: hidden; overflow-y: hidden;">
+  <div id="header" class="col-12 pt-2 title">
+    <div class="col-7 float-left">
+      <img src="../static/images/main_ci.png" />
+    </div>
+    <div class="dropdown col-5 float-left text-right">
+      <button type="button" class="btn dropdown-toggle txt-purple" data-toggle="dropdown">{{name}}</button>
+      <!--이름 또는 아이디 표시-->
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/kstime">경성타임</a>
+        <a class="dropdown-item" href="/ranking">랭킹확인</a>
+        <a class="dropdown-item" href="{{ url_for('edit', userid=userid) }}">마이페이지</a>
         <!--  {%if name%}
         <a href="{{ url_for('edit', userid=userid) }}">{{name}}</a>
         <a style="margin-right:2%"> 님  환영합니다  </a>
         {%endif%} -->
         <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/logout">로그아웃</a>
-        </div>
-      
-        <!-- <div class="login_info" style="font-size: 13pt">
+        <a class="dropdown-item" href="/logout">로그아웃</a>
+      </div>
+
+      <!-- <div class="login_info" style="font-size: 13pt">
         <button type="button" class="btn btn-link" style="margin-right:2%" onclick="location.href='/kstime'">경성타임</button>
         <button type="button" class="btn btn-link" style="margin-right:2%" onclick="location.href='/ranking'">나의 랭킹은?</button>
         {%if name%}
@@ -50,16 +60,13 @@
       </div> -->
     </div>
   </div>
-  <div id="body" class="col-12 sub_body">
+  <div id="body" class="sub_body" style="width:100%">
     <div class="podo">
-    <img src="../static/images/vine.svg" style="position:relative">
-    <img class={{stamp}} style="position:absolute;margin:0%;margin-top:65%">
-    <img class={{star}} style="position:absolute;margin:2.6%">
+      <img src="../static/images/vine.svg" style="position:relative; border-radius:40px; margin:0%">
+      <img class={{stamp}} style="position:absolute;margin:0%;margin-top:0%">
+      <img class={{star}} style="position:absolute;margin:2.6%">
+    </div>
   </div>
-</div>
 </body>
+
 </html>
-
-
-
-
