@@ -4,6 +4,7 @@ from flask import render_template #template폴더 안에 파일을 쓰겠다
 from flask import request #회원정보를 제출할 때 쓰는 request, post요청 처리
 from flask import redirect #리다이렉트
 from flask import flash
+from flask import g
 import math
 #from flask_sqlalchemy import SQLAlchemy
 from models import db
@@ -13,6 +14,12 @@ from flask_wtf.csrf import CSRFProtect #csrf
 from form import RegisterForm, LoginForm, DetailForm, EditForm, FlaskForm
 from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
+
+@app.before_request
+def fix_missing_csrf_token():
+    if app.config['WTF_CSRF_FIELD_NAME'] not in session:
+        if app.config['WTF_CSRF_FIELD_NAME'] in g:
+            g.pop(app.config['WTF_CSRF_FIELD_NAME'])
 
 @app.route('/')
 def mainpage():
