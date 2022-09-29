@@ -1,4 +1,5 @@
 import os #디렉토리 절대 경로
+import base64
 from flask import Flask
 from flask import render_template #template폴더 안에 파일을 쓰겠다
 from flask import request #회원정보를 제출할 때 쓰는 request, post요청 처리
@@ -89,6 +90,43 @@ def edit(userid):
         return redirect('/')
     return render_template('user_edit.html', user=user, userid=userid, form=form)
 
+@app.route('/kspay/<userid>', methods=['GET','POST'])
+def kspay(userid):
+    userid = session.get('userid')
+    if userid == None:
+        return redirect('/login')
+    user = User.query.filter_by(userid=userid).first()
+    payment_link=(str(user.phone)+"&"+str(user.userid)).encode('ascii')
+    encoded_link=str(base64.b64encode(payment_link)).split('\'')
+    pay_link="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://sjun1019.iptime.org:2041/payment_auth/"+encoded_link[1]
+    # if request.method == 'POST':            #결제완료시 동작하도록
+    #     user.phone = form.data.get('phone')
+    #     user.name = form.data.get('name')
+    #     db.session.commit()
+    #     return redirect('/')
+    return render_template('kspay.html', name=user.name, user=user, userid=userid, pay_link=pay_link)
+
+@app.route('/payment_auth/<token>', methods=['GET','POST'])
+def kspay_auth(token):
+    if session['userid'] != "admin":
+        return redirect('/login')
+    #token_to_id
+    d_token=str(base64.b64decode(token)).split('\'')
+    userid=(d_token[1].split('&'))[1]
+    
+    form = DetailForm()
+    user = User.query.filter_by(userid=userid).first()
+    if request.method == 'POST':
+        user.point = user.point - form.data.get('point')
+        db.session.commit()
+        return redirect('/payment_succeed')
+    return render_template('kspay_auth.html', name=user.name, user=user, userid=userid, form=form)
+
+@app.route('/payment_succeed', methods=['GET'])
+def payment_succeed():
+    if session['userid'] == None:
+        return redirect('/')
+    return render_template('payment_succeed.html')
 
 @app.route('/delete/<userid>', methods=['GET','POST'])
 def delete(userid):
