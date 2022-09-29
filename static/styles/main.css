@@ -1,3 +1,12 @@
+@font-face {
+    font-family : 'NanumGothic';
+    src : url(NanumGothic.ttf)
+  }
+
+.a{
+    font-family: NanumGothic;
+}
+
 .login_info{
     padding-top: 2%;
     padding-bottom: 1%;
