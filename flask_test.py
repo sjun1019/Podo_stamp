@@ -126,7 +126,7 @@ def kspay_auth(token):
 def payment_succeed():
     if session['userid'] == None:
         return redirect('/')
-    return render_template('payment_succeed.html')
+    return render_template('kspay_succeed.html')
 
 @app.route('/delete/<userid>', methods=['GET','POST'])
 def delete(userid):

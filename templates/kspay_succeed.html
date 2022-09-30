@@ -21,6 +21,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script language="JavaScript">
+        function auto_close() {
+        setTimeout('closed()',3000);
+        }
+        
+        function closed() {
+        self.close();
+        }
+        auto_close();
+    </script>
 </head>
 
 <body>
@@ -36,15 +46,15 @@
         </div>
         <div class="col-xs-9 text-center">
             <img src="../static/images/sub_ksubf.png" />
-            KSPAY 결제 완료
+            KSPay 경성페이
         </div>
     </div>
 
     <div id="body" class="col-12 sub_body">
         <div class="container my-3">
             <div class="row">
-                <div class="col-12">
-
+                <div class="col-12" text-align:center>
+                    <img src="../static/images/check.gif" />
                 </div>
             </div>
         </div>
@@ -52,15 +62,3 @@
 </body>
 
 </html>
-<script language="JavaScript">
-    <!--
-    function auto_close() {
-    setTimeout('closed()',10000);
-    }
-    
-    function closed() {
-    self.close();
-    }
-    auto_close();
-    //-->
-    </script>
