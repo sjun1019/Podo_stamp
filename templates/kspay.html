@@ -26,9 +26,19 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+  <script language="JavaScript">
+      function auto_close() {
+        setTimeout('closed()', 30000);
+      }
+      function closed() {
+        document.location.href = '/';
+    }
+    auto_close();
+  </script>
 </head>
 
-<body style="overflow-x: hidden; overflow-y: hidden;" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<body style="overflow-x: hidden; overflow-y: hidden;" oncontextmenu="return false" ondragstart="return false"
+  onselectstart="return false">
   <div id="header" class="col-12 pt-2 title">
     <div class="col-7 float-left">
       <img src="../static/images/main_ci.png" />
@@ -50,8 +60,14 @@
     </div>
   </div>
   <div id="body" class="sub_body" style="width:100%">
-    <img style="-webkit-user-select:none; display:block; margin:auto; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);" src={{pay_link}}>
+    <div class="text-center font-weight-bold">
+      <a>QR 코드를 보여주세요!</a>
+      
+    </div>
+    <img
+      style="-webkit-user-select:none; display:block; margin:auto; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);"
+      src={{pay_link}}>
   </div>
-</body>
+  </body>
 
 </html>
