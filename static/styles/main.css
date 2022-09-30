@@ -1,6 +1,14 @@
 @font-face {
     font-family : 'NanumGothic';
-    src : url(NanumGothic.ttf)
+    src : url(/static/fonts/NanumGothic.ttf) format("truetype");
+    font-style: "Normal";
+    font-weight: "Normal";
+}
+@font-face {
+    font-family : 'NanumGothicBold';
+    src : url(/static/fonts/NanumGothicBold.ttf) format("truetype");
+    font-style : "Normal";
+    font-weight : "Bold";
   }
 
 .a{
@@ -153,11 +161,40 @@ img{
      height: 600px;
      position: absolute; 
 }
+
+.box-center {
+margin: auto;
+width: 50%;
+/* border: 3px solid green; */
+padding-left: 10px;
+padding-right: 10px;
+}
+
+.box-right {
+position: absolute;
+right: 0px;
+width: 25%;
+/* border: 3px solid green; */
+padding-left: 10px;
+}
+
+.box-left {
+position: absolute;
+left: 0px;
+width: 25%;
+/* border: 3px solid green; */
+padding-right: 10px;
+}
+
 .txt-purple {
+    color:#6E2FC7;
+    /* font-weight: bolder; */
+}
+.txt-purple-b {
     color:#6E2FC7;
     font-weight: bolder;
 }
-.txt-purple:hover {
+.txt-purple-b:hover {
     color:#6E2FC7;
     font-weight: bolder;   
 }

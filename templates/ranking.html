@@ -19,10 +19,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head> 
 <body>
-    <div id="header" class="w-100 pt-2 title font-weight-bold fl-left">
+    <div id="header" class="w-100 pt-2 title font-weight-bold">
         <!-- <button type="button" class="btn btn-outline-secondary" onclick="location.href='javascript:window.history.back()'">뒤로</button> -->
-        <div class="col-xs-3 float-left pl-0">
-            <button type="button" class="btn txt-purple" onclick="location.href='/admin'">
+        <div class="box-left">
+            <button type="button" class="btn txt-purple" onclick="location.href='/'">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                     class="bi bi-chevron-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -30,54 +30,12 @@
                 </svg>
             </button>
         </div>
-        <div class="col-xs-9 text-center" style="font-family:NanumGothic">
-            <img src="../static/images/sub_ksubf.png" />
+        <div class="txt-purple box-center text-center">
+            <img style="padding-right:2%" src="../static/images/sub_ksubf.png" />
             전체 랭킹
         </div>
-        <!-- <div class="login_info">
-        {%if userid%}
-        <a>{{userid}}</a>
-        {%endif%}
-    </div> -->
-        <!-- <table style="margin-top:2%">
-        {% if rank_list1 %}
-        {% for rank, user in rank_list1 %}
-        {% if user.userid == userid %}
-        <tr class="text-center">
-            <td>{{ rank+1 }}위</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.point }}포인트</td>
-            <td>{{ user.attend }}회 출석</td>
-        {% endif %}
-        </tr>
-        {% endfor %}
-        {% else %}
-        <tr>
-            <td colspan="4">회원이 없습니다.</td>
-        </tr>
-        {% endif %}
-    </table> -->
-        <!-- <div class="w-100 txt-purple sub_body mt-4 text-center" style="height: 50px;">
-        <div style="margin-top:11px; font-weight: bold;">
-        {% if rank_list1 %}
-        {% for rank, user in rank_list1 %}
-            {% if user.userid == userid %}
-            <tr class="text-center">
-            <td>{{ rank+1 }}위</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.point }}포인트</td>
-            <td>{{ user.attend }}회 출석</td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-        {% else %}
-        <tr>
-            <td colspan="4">회원이 없습니다.</td>
-        </tr>
-        {% endif %}
-    </div> -->
     </div>
-    <div id="body" class="col-12 sub_body" style="margin-top:150px !important;">
+    <div id="body" class="col-12 sub_body";">
         <div class="container">
             <div class="row my-3">
                 <div class="col-6">
@@ -91,7 +49,7 @@
             </div>
             <table class="table">
                 <thead>
-                    <tr class="text-center table-dark font-10">
+                    <tr class="text-center font-10" style="font-family:NanumGothic">
                         <th>랭킹</th>
                         <th>이름</th>
                         <th>포인트</th>

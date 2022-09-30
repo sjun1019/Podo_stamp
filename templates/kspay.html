@@ -2,72 +2,70 @@
 <html lang="en">
 
 <head>
-  <meta charset='utf-8' />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=no">
-  <meta name="apple-mobile-web-app-title" content="KSUBF 경성페이">
-  <meta name="application-name" content="KSUBF 경성페이">
-  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' /> <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
-  <!-- <link rel="stylesheet" type="text/css" href="../static/styles/main.css"> -->
-  <title>KSPay 경성페이</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=no">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-  <script language="JavaScript">
-      function auto_close() {
-        setTimeout('closed()', 30000);
-      }
-      function closed() {
-        document.location.href = '/';
-    }
-    auto_close();
-  </script>
+    <meta charset='utf-8' />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="KSUBF 경성페이">
+    <meta name="application-name" content="KSUBF 경성페이">
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/main.css')}}">
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles/main.css"> -->
+    <title>KSPay 경성페이</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script language="JavaScript">
+        function auto_close() {
+            setTimeout('closed()', 30000);
+        }
+        function closed() {
+            document.location.href = '/';
+        }
+        auto_close();
+    </script>
 </head>
 
 <body style="overflow-x: hidden; overflow-y: hidden;" oncontextmenu="return false" ondragstart="return false"
-  onselectstart="return false">
-  <div id="header" class="col-12 pt-2 title">
-    <div class="col-7 float-left">
-      <img src="../static/images/main_ci.png" />
+    onselectstart="return false">
+    <div id="header" class="w-100 pt-2 title font-weight-bold">
+        <!-- <button type="button" class="btn btn-outline-secondary" onclick="location.href='javascript:window.history.back()'">뒤로</button> -->
+        <div class="box-left">
+            <button type="button" class="btn txt-purple" onclick="location.href='/'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                </svg>
+            </button>
+        </div>
+        <div class="txt-purple box-center text-center">
+            <img style="padding-right:2%" src="../static/images/sub_ksubf.png" />
+            KSPay 경성페이
+        </div>
     </div>
-    <div class="dropdown col-5 float-left text-right">
-      <button type="button" class="btn dropdown-toggle txt-purple" data-toggle="dropdown">{{name}}</button>
-      <!--이름 또는 아이디 표시-->
-      <div class="dropdown-menu">
-        <!-- <a class="dropdown-item" href="/kstime">경성타임</a> -->
-        <a class="dropdown-item" href="/ranking">랭킹확인 ☝️</a>
-        <a class="dropdown-item" href="{{ url_for('edit', userid=userid) }}">마이페이지 🙋🏼‍♂️</a>
-        <a class="dropdown-item" href="/kspay">경성페이 💵</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="https://band.us/band/87666349#">토미 밴드 ➡️</a>
-        <a class="dropdown-item" href="https://www.instagram.com/ks_ubf/">토미 인스타그램 ➡️</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/logout">로그아웃 🤗</a>
-      </div>
+    <div id="body" class="sub_body" style="width:100%">
+        <div class="text-center font-weight-bold">
+            <a>QR 코드를 보여주세요!</a>
+        </div>
+        <div class="text-center font-weight-bold">
+            <a>이 창은 30초 후에 닫힙니다.</a>
+        </div>
+        <img style="-webkit-user-select:none; display:block; margin:auto; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);"
+            src={{pay_link}}>
     </div>
-  </div>
-  <div id="body" class="sub_body" style="width:100%">
-    <div class="text-center font-weight-bold">
-      <a>QR 코드를 보여주세요!</a>
-      
-    </div>
-    <img
-      style="-webkit-user-select:none; display:block; margin:auto; padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);"
-      src={{pay_link}}>
-  </div>
-  </body>
+</body>
 
 </html>

@@ -98,7 +98,8 @@ def kspay(userid):
     user = User.query.filter_by(userid=userid).first()
     payment_link=(str(user.phone)+"&"+str(user.userid)).encode('ascii')
     encoded_link=str(base64.b64encode(payment_link)).split('\'')
-    pay_link="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://sjun1019.iptime.org:2041/payment_auth/"+encoded_link[1]
+    # pay_link="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://sjun1019.iptime.org:2041/payment_auth/"+encoded_link[1]
+    pay_link="https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=http://192.168.0.9:8080/payment_auth/"+encoded_link[1]
     # if request.method == 'POST':            #결제완료시 동작하도록
     #     user.phone = form.data.get('phone')
     #     user.name = form.data.get('name')
@@ -108,7 +109,8 @@ def kspay(userid):
 
 @app.route('/payment_auth/<token>', methods=['GET','POST'])
 def kspay_auth(token):
-    if session['userid'] != "admin":
+    userid = session.get('userid')
+    if userid != "admin":
         return redirect('/login')
     #token_to_id
     d_token=str(base64.b64decode(token)).split('\'')
@@ -124,8 +126,9 @@ def kspay_auth(token):
 
 @app.route('/payment_succeed', methods=['GET'])
 def payment_succeed():
-    if session['userid'] == None:
-        return redirect('/')
+    userid = session.get('userid')
+    if userid == None:
+        return redirect('/login')
     return render_template('kspay_succeed.html')
 
 @app.route('/delete/<userid>', methods=['GET','POST'])
