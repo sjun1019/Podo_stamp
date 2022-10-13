@@ -11,8 +11,8 @@ class User(db.Model): #데이터 모델을 나타내는 객체 선언
     name = db.Column(db.String(150), nullable=False)
     phone = db.Column(db.String(120), unique=True, nullable=False)
     point = db.Column(db.Integer(), nullable=True)
-    tot = db.Column(db.Integer(), nullable=True)
-    attend = db.Column(db.Integer(), nullable=True)
+    # tot = db.Column(db.Integer(), nullable=True)
+    # attend = db.Column(db.Integer(), nullable=True)
     # temp = db.Column(db.Integer(), nullable=True)
 
 
@@ -22,7 +22,21 @@ class User(db.Model): #데이터 모델을 나타내는 객체 선언
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+class NewPoint(db.Model): #데이터 모델을 나타내는 객체 선언
+    __tablename__ = 'new_point_table' #테이블 이름
+    
+    id = db.Column(db.Integer)
+    userid = db.Column(db.String(150), unique=True, nullable=False)
+    point = db.Column(db.Integer(), nullable=True)
 
+class Attend(db.Model):
+    __tablename__ = 'attend_table'
+
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime, nullable=False)
+    userid = db.Column(db.String(150), unique=True, nullable=False)
+    attend = db.Column(db.Boolean, nullable=False)
+    
 class Content(db.Model): #데이터 모델을 나타내는 객체 선언
     __tablename__ = 'content_table' #테이블 이름
     
