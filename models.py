@@ -25,7 +25,7 @@ class User(db.Model): #데이터 모델을 나타내는 객체 선언
 class NewPoint(db.Model): #데이터 모델을 나타내는 객체 선언
     __tablename__ = 'new_point_table' #테이블 이름
     
-    id = db.Column(db.Integer)
+    id = db.Column(db.Integer, primary_key=True)
     userid = db.Column(db.String(150), unique=True, nullable=False)
     point = db.Column(db.Integer(), nullable=True)
 

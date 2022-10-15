@@ -1,5 +1,8 @@
 import os #디렉토리 절대 경로
 import base64
+import time
+import datetime
+import schedule
 from flask import Flask
 from flask import render_template #template폴더 안에 파일을 쓰겠다
 from flask import request #회원정보를 제출할 때 쓰는 request, post요청 처리
@@ -228,6 +231,9 @@ def login():
 def logout():
     session.pop('userid', None)
     return redirect('/')
+    
+def DBupdate():
+    db.
 
 if __name__ == "__main__":
     #데이터베이스---------
@@ -246,4 +252,7 @@ if __name__ == "__main__":
     db.app = app #Models.py에서 db를 가져와서 db.app에 app을 명시적으로 넣는다
     db.create_all() #DB생성
 
+    schedule.every().day.at("0:0").do(DBupdate)
+
     app.run(host="0.0.0.0", port=8080, debug=True)
+    
